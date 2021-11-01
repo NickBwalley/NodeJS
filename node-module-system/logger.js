@@ -1,13 +1,18 @@
-var url = 'http://mylogger.io/log';
-console.log(__filename);
-console.log(__dirname);
-function log(message) {
+// EVENTS MODULE
+const EventEmitter = require('events');
+// const emitter = new EventEmitter();
+
+class Logger extends EventEmitter {
+  log(message) {
     // Send a HTTP request
     console.log(message);
+    // Raise an event
+    this.emit('messageLogged', { id: 1, url: 'https://this' });
+  }
 }
 
-module.exports = log;
+module.exports = Logger;
 
-module.exports.log = log;
+// module.exports.log = log;
 // exports.log = log;
 // exports = log; // this is a bad approach.
