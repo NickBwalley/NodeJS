@@ -2,4 +2,5 @@ function sayHello(name) {
   console.log(`Hello ${name}`)
 }
 
-sayHello('Nick')
+//sayHello('Nick')
+console.log(module)
