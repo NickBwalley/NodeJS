@@ -1,11 +1,25 @@
+// EVENTS MODULE
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
+
+//Register a listener
+emitter.on('messageLogged', (arg) => {
+    console.log('Listener called', arg);
+});
+
+// Raise an event
+emitter.emit('messageLogged', { id: 1, url: 'https://this' });
+
+// Raise: logging(data: message)
+
 // FILE SYSTEM MODULE
-const fs = require('fs');
+/*const fs = require('fs');
 const files = fs.readdirSync('./');
 fs.readdir('./', function (err, files) {
     if (err) console.log('Error', err);
     else console.log('Result', files);
 });
-console.log(files);
+console.log(files);*/
 
 // OS MODULE
 /*const os = require('os');
