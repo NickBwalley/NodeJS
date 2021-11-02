@@ -1,5 +1,5 @@
 {
-  "name": "npm-demo",
+  "name": "npm-demo3",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,9 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "underscore": "^1.13.1"
-  },
-  "devDependencies": {
-    "jshint": "^2.13.1"
+    "npm-demo2-079": "^1.0.0"
   }
 }
