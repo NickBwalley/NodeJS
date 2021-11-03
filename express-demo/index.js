@@ -34,8 +34,9 @@ app.post('/api/courses/', (req, res) => {
   if (result.error) {
     // 400 Bad Request!!
     res.status(400).send(result.error.details[0].message);
+    return;
   }
-  return;
+
   const course = {
     id: courses.length + 1,
     name: req.body.name,
