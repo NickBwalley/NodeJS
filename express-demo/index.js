@@ -4,8 +4,13 @@ const app = express();
 app.get('/', (req, res) => {
   res.send('Hello World!!!'); // this is a route handler
 });
+
 app.get('/api/courses', (req, res) => {
   res.send([1, 2, 3]); // this is a route handler
+});
+
+app.get('/api/courses/:year/:month', (req, res) => {
+  res.send(req.params); // req.query // query string params to provide additional data to our backend services
 });
 
 const port = process.env.PORT || 3000;
