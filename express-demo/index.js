@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello World'); // this is a route handler
+  res.send('Hello my name is Nicholas!'); // this is a route handler
 });
 app.get('/api/courses', (req, res) => {
   res.send([1, 2, 3]); // this is a route handler
