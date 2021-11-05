@@ -1,11 +1,18 @@
 console.log('Before');
-getUser(1, (user) => {
-  getRepositories(user.githubUserName, (repos) => {
-    getCommmits(repo, (commits) => {
-      // CALLBACK HELL
-    });
-  });
-});
+getUser(1, getRepositories);
+
+// functions to get rid of CALLBACK HELL
+function getRepositories(user) {
+  getRepositories(user.githubUserName, getCommits);
+}
+
+function getCommits(repos) {
+  getCommmits(repo, displayCommits);
+}
+
+function displayCommits(commits) {
+  console.log(commits);
+}
 
 console.log('After');
 
