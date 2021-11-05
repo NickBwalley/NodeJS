@@ -20,7 +20,7 @@ function getUser(id) {
     // Kick off some async work...
     setTimeout(() => {
       console.log('Reading a user from a database...');
-      resolve({ id: id, gitHubUsername: 'mosh' });
+      resolve({ id: id, gitHubUsername: 'Nick' });
     }, 2000);
   });
 }
