@@ -13,9 +13,9 @@ const courseSchema = new mongoose.Schema({
   isPublished: Boolean,
 });
 
+const Course = mongoose.model("Course", courseSchema);
+
 async function createCourse() {
-  // Classes and Objects
-  const Course = mongoose.model("Course", courseSchema);
   const course = new Course({
     name: "React.js course",
     author: "Nick",
@@ -26,5 +26,13 @@ async function createCourse() {
   const result = await course.save();
   console.log(result);
 }
+// createCourse();
 
-createCourse();
+async function getCourses() {
+  const courses = await Course.find({ author: "Nick", isPublished: true })
+    .limit(10)
+    .sort({ name: 1 }) // sorts in ascending order. // -1 means in descending order.
+    .select({ name: 1, tags: 1 });
+  console.log(courses);
+}
+getCourses();
