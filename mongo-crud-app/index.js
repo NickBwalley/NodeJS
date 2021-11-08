@@ -44,11 +44,6 @@ async function getCourses() {
 
 // updating a course in mongoDB
 async function updateCourse(id) {
-  // Approach: Query first
-  // findById
-  // Modify its properties.
-  // save()
-  // const course = await Course.findById(id);
   const course = await Course.findByIdAndUpdate(
     id,
     {
@@ -59,33 +54,18 @@ async function updateCourse(id) {
     },
     { new: true }
   );
-
-  // if (!course) return;
-  // course.isPublished = true;
-  // course.author = "programmacion es muy divertida!";
-  /*course.set({
-    isPublished: true,
-    author: author
-  })*/
-  // const result = await course.save();
   console.log(course);
-
-  // Approach: Update first
-  // update directly
-  // optionally: get the updated document
 }
 
-updateCourse("618632d6d3c441390201c3a8");
-// eq (equal)
-// ne (not equal)
-// gt (greater than)
-// gte (greater than or equal to)
-// lt (less than)
-// lte (less than or equal to)
-// in
-// nin (not in )
-//  LOGICAL OPERATORS
-// or, and
+async function removeCourse(id) {
+  // const result = await Course.deleteOne({ _id: id });
+  const course = await Course.findByIdAndRemove(id);
+  console.log(course);
+}
+
+removeCourse("618632d6d3c441390201c3a8");
+
+// updateCourse("618632d6d3c441390201c3a8");
 
 // .find({price: {$gte: 10, $lte: 20} }) // $ represent an operator
 // .find({price: {$in: [10, 15, 20]}})
