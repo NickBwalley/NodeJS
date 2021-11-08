@@ -40,8 +40,31 @@ async function getCourses() {
   // .count();
   console.log(courses);
 }
-getCourses();
+// getCourses();
 
+// updating a course in mongoDB
+async function updateCourse(id) {
+  // Approach: Query first
+  // findById
+  // Modify its properties.
+  // save()
+  const course = await Course.findById(id);
+  if (!course) return;
+  course.isPublished = true;
+  course.author = "programmacion es muy divertida!";
+  /*course.set({
+    isPublished: true,
+    author: author
+  })*/
+  const result = await course.save();
+  console.log(result);
+
+  // Approach: Update first
+  // update directly
+  // optionally: get the updated document
+}
+
+updateCourse("618632d6d3c441390201c3a8");
 // eq (equal)
 // ne (not equal)
 // gt (greater than)
