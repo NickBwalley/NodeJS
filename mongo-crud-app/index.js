@@ -29,37 +29,36 @@ async function createCourse() {
 // createCourse();
 
 async function getCourses() {
-  // eq (equal)
-  // ne (not equal)
-  // gt (greater than)
-  // gte (greater than or equal to)
-  // lt (less than)
-  // lte (less than or equal to)
-  // in
-  // nin (not in )
-  //  LOGICAL OPERATORS 
-  // or, and
-
-  const courses = await Course
-    // .find({ author: "Nick", isPublished: true })
-    // .find({price: {$gte: 10, $lte: 20} }) // $ represent an operator
-    // .find({price: {$in: [10, 15, 20]}})
-    // .find()
-      // .or([{author: 'Nick'}, {isPublished: true}])
-      // .and([])
-    // starts with Nick
-    .find({author: /^Nick/}) // string that starts with Nick
-    // dollar sign expresses the end of a string.
-    // Note it is case sensitive so you append an i at the end to make it course insensitive. 
-    .find({author: /Bwalley$/i}) 
-
-    // contains Mosh
-    .find({author: /.*Nick.*/i})
-    
-
+  const courses = await Course.find({ author: "Nick", isPublished: true })
     .limit(10)
     .sort({ name: 1 }) // sorts in ascending order. // -1 means in descending order.
-    .select({ name: 1, tags: 1 });
+    // .select({ name: 1, tags: 1 });
+    .count();
   console.log(courses);
 }
 getCourses();
+
+// eq (equal)
+// ne (not equal)
+// gt (greater than)
+// gte (greater than or equal to)
+// lt (less than)
+// lte (less than or equal to)
+// in
+// nin (not in )
+//  LOGICAL OPERATORS
+// or, and
+
+// .find({price: {$gte: 10, $lte: 20} }) // $ represent an operator
+// .find({price: {$in: [10, 15, 20]}})
+// .find()
+// .or([{author: 'Nick'}, {isPublished: true}])
+// .and([])
+// starts with Nick
+// .find({author: /^Nick/}) // string that starts with Nick
+// dollar sign expresses the end of a string.
+// Note it is case sensitive so you append an i at the end to make it course insensitive.
+// .find({author: /Bwalley$/i})
+
+// contains Mosh
+// .find({author: /.*Nick.*/i})
