@@ -29,11 +29,15 @@ async function createCourse() {
 // createCourse();
 
 async function getCourses() {
+  const pageNumber = 2;
+  const pageSize = 10;
+
   const courses = await Course.find({ author: "Nick", isPublished: true })
-    .limit(10)
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
     .sort({ name: 1 }) // sorts in ascending order. // -1 means in descending order.
-    // .select({ name: 1, tags: 1 });
-    .count();
+    .select({ name: 1, tags: 1 });
+  // .count();
   console.log(courses);
 }
 getCourses();
