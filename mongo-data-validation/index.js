@@ -1,31 +1,52 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost/playground")
+  .connect("mongodb://localhost/playground2")
   .then(() => console.log("Connected to MongoDB..."))
   .catch((err) => console.log("Could not connect to MongoDB...", err));
 
 const courseSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
+    // match: /pattern/
+  },
+  category: {
+    type: String,
+    required: true,
+    enum: ["web", "mobile", "network"],
+  },
   author: String,
   tags: [String],
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
+  price: {
+    type: Number,
+    required: function () {
+      return this.isPublished;
+    },
+    min: 10,
+    max: 200,
+  },
 });
 
 const Course = mongoose.model("Course", courseSchema);
 
 async function createCourse() {
   const course = new Course({
-    // name: "React.js course",
-    author: "Nick",
-    tags: ["react", "frontend"],
+    name: "Angular course",
+    category: "web",
+    author: "Mosh",
+    tags: ["angular", "frontend"],
     isPublished: true,
+    price: 10,
   });
   try {
     await course.validate();
-    // const result = await course.save();
-    // console.log(result);
+    const result = await course.save();
+    console.log(result);
   } catch (ex) {
     console.log(ex.message);
   }
@@ -61,6 +82,9 @@ async function updateCourse(id) {
   console.log(course);
 }
 
+// updateCourse("618632d6d3c441390201c3a8");
+
+// removing a course in mongoDB
 async function removeCourse(id) {
   // const result = await Course.deleteOne({ _id: id });
   const course = await Course.findByIdAndRemove(id);
@@ -68,5 +92,3 @@ async function removeCourse(id) {
 }
 
 // removeCourse("618632d6d3c441390201c3a8");
-
-// updateCourse("618632d6d3c441390201c3a8");
