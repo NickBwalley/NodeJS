@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth'); // this is authorization.
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcrypt');
@@ -6,6 +7,10 @@ const {User, validate} = require('../models/user');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+
+router.get('/me', async(req, res) => {
+
+})
 
 router.post('/', async (req, res) => {
   const {error} =  validate(req.body);
