@@ -24,4 +24,18 @@ describe('greet', () => {
     // expect(result).toMatch(/Nick/);
     expect(result).toContain('Nick');
   })
-})
+});
+
+describe('getCurrencies', () => {
+  it('should return supported currencies', () => {
+    const result =  lib.getCurrencies();
+    //proper way
+    expect(result).toContain('USD');
+    expect(result).toContain('EUR');
+    expect(result).toContain('AUD');
+
+    //IDEAL WAY 
+    expect(result).toEqual(expect.arrayContaining(['AUD', 'EUR', 'USD']));
+
+  });
+});
