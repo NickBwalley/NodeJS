@@ -61,5 +61,5 @@ describe('registerUser', () => {
     const result = lib.registerUser('Nick');
     expect(result).toMatchObject({username: 'Nick'});
     expect(result.id).toBeGreaterThan(0);
-  })
+  });
 }); 
